@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "Simple tictactoe server",
   "scripts": {
+    "tsc": "tsc",
+    "postinstall": "npm run tsc",
     "start": "tsc && node dist/app",
     "dev": "nodemon",
     "lint": "tslint -p .",
