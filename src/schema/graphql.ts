@@ -21,6 +21,11 @@ const typeDefs = gql`
     room(id: Int): Room
     rooms: [Room]!
   }
+
+  type Mutation {
+    createPlayer(name: String): Player!
+    createRoom(name: String): Room!
+  }
 `
 
 const resolvers = {
@@ -44,6 +49,18 @@ const resolvers = {
     },
     rooms: () => {
       return RoomList
+    }
+  },
+  Mutation: {
+    createPlayer: (_: any, args: { name: string } | any) => {
+      const player = new Player(args.name)
+      PlayerList.push(player)
+      return player
+    },
+    createRoom: (_: any, args: { name: string } | any) => {
+      const room = new Room(args.name)
+      RoomList.push(room)
+      return room
     }
   }
 }
