@@ -1,7 +1,7 @@
 import { isUndefined } from 'util'
 import { Player } from './player'
 
-class Room {
+export class Room {
   static numRoom: number = 0
 
   readonly id: number
@@ -28,6 +28,24 @@ class Room {
   }
 }
 
-const RoomList: Array<Room> = new Array(0)
+export namespace RoomList {
+  const RoomList: Array<Room> = new Array(0)
 
-export { Room, RoomList }
+  export function getRoom (id: number): Room | null {
+    const room = RoomList.find(x => x.id === id)
+    if (isUndefined(room)) {
+      return null
+    }
+    return room
+  }
+
+  export function getRooms (): Array<Room> {
+    return RoomList
+  }
+
+  export function addRoom (name: string): Room {
+    const room = new Room(name)
+    RoomList.push(room)
+    return room
+  }
+}

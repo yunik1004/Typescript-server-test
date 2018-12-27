@@ -1,7 +1,7 @@
-import { isUndefined } from 'util'
+import { isNull } from 'util'
 import { gql } from 'apollo-server-koa'
-import { Player, PlayerList } from '../model/player'
-import { Room, RoomList } from '../model/room'
+import { PlayerList } from '../model/player'
+import { RoomList } from '../model/room'
 
 const typeDefs = gql`
   type Player {
@@ -32,41 +32,29 @@ const typeDefs = gql`
 const resolvers = {
   Query: {
     player: (_: any, args: { id: number } | any) => {
-      const player = PlayerList.find(x => x.id === args.id)
-      if (isUndefined(player)) {
-        return null
-      }
-      return player
+      return PlayerList.getPlayer(args.id)
     },
     players: () => {
-      return PlayerList
+      return PlayerList.getPlayers()
     },
     room: (_: any, args: { id: number } | any) => {
-      const room = RoomList.find(x => x.id === args.id)
-      if (isUndefined(room)) {
-        return
-      }
-      return room
+      return RoomList.getRoom(args.id)
     },
     rooms: () => {
-      return RoomList
+      return RoomList.getRooms()
     }
   },
   Mutation: {
     createPlayer: (_: any, args: { name: string } | any) => {
-      const player = new Player(args.name)
-      PlayerList.push(player)
-      return player
+      return PlayerList.addPlayer(args.name)
     },
     createRoom: (_: any, args: { name: string } | any) => {
-      const room = new Room(args.name)
-      RoomList.push(room)
-      return room
+      return RoomList.addRoom(args.name)
     },
     joinRoom: (_: any, args: { roomID: number, playerID: number } | any) => {
-      const room = RoomList.find(x => x.id === args.roomID)
-      const player = PlayerList.find(x => x.id === args.playerID)
-      if (isUndefined(room) || isUndefined(player)) {
+      const room = RoomList.getRoom(args.roomID)
+      const player = PlayerList.getPlayer(args.playerID)
+      if (isNull(room) || isNull(player)) {
         return false
       }
       return room.join(player)
