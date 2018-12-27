@@ -1,4 +1,4 @@
-import { isUndefined, isString, isNumber } from 'util'
+import { isUndefined } from 'util'
 import { gql } from 'apollo-server-koa'
 import { Player, PlayerList } from '../model/player'
 import { Room, RoomList } from '../model/room'
