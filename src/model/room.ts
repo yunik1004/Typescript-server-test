@@ -1,14 +1,34 @@
+import { isUndefined } from 'util'
+import { Player } from './player'
+
 class Room {
   static numRoom: number = 0
 
   readonly id: number
-  name: string
-  players: Array<any>
+  readonly name: string
+  private players: Array<Player>
 
   constructor (name: string) {
     this.id = Room.numRoom++
     this.name = name
     this.players = new Array(0)
+  }
+
+  toJSON (): Object {
+    return {
+      id: this.id,
+      name: this.name,
+      numPlayer: this.players.length
+    }
+  }
+
+  join (player: Player): boolean {
+    if (!isUndefined(this.players.find(x => x.id === player.id))) {
+      return false
+    }
+
+    this.players.push(player)
+    return true
   }
 }
 
