@@ -14,14 +14,6 @@ class Room {
     this.players = new Array(0)
   }
 
-  toJSON (): Object {
-    return {
-      id: this.id,
-      name: this.name,
-      numPlayer: this.players.length
-    }
-  }
-
   numPlayers (): number {
     return this.players.length
   }

@@ -25,6 +25,7 @@ const typeDefs = gql`
   type Mutation {
     createPlayer(name: String): Player!
     createRoom(name: String): Room!
+    joinRoom(roomID: Int, playerID: Int): Boolean
   }
 `
 
@@ -61,6 +62,14 @@ const resolvers = {
       const room = new Room(args.name)
       RoomList.push(room)
       return room
+    },
+    joinRoom: (_: any, args: { roomID: number, playerID: number } | any) => {
+      const room = RoomList.find(x => x.id === args.roomID)
+      const player = PlayerList.find(x => x.id === args.playerID)
+      if (isUndefined(room) || isUndefined(player)) {
+        return false
+      }
+      return room.join(player)
     }
   }
 }
