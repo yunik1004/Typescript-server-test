@@ -1,7 +1,7 @@
 {
-  "name": "onecard-server",
+  "name": "tictactoe-server",
   "version": "1.0.0",
-  "description": "",
+  "description": "Simple tictactoe server",
   "scripts": {
     "start": "tsc && node dist/app",
     "dev": "nodemon",
@@ -9,6 +9,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "yunik1004",
+  "repository": "https://github.com/yunik1004/tictactoe-server",
   "license": "ISC",
   "dependencies": {
     "koa": "^2.6.2",
