@@ -11,7 +11,7 @@ app.use(router.allowedMethods())
 const server = require('http').createServer(app.callback())
 const io = require('socket.io')(server)
 
-const PORT = 8080
+const PORT = process.env.PORT || 8080
 
 server.listen(PORT, () => {
   console.log('Server is listening to port ' + PORT)
