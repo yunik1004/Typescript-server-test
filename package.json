@@ -12,12 +12,15 @@
   "repository": "https://github.com/yunik1004/tictactoe-server",
   "license": "ISC",
   "dependencies": {
+    "apollo-server-koa": "^2.3.1",
+    "graphql": "^14.0.2",
     "koa": "^2.6.2",
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
     "socket.io": "^2.2.0"
   },
   "devDependencies": {
+    "@types/graphql": "^14.0.3",
     "@types/koa": "^2.0.47",
     "@types/koa-bodyparser": "^4.2.1",
     "@types/koa-router": "^7.0.35",
