@@ -22,6 +22,10 @@ class Room {
     }
   }
 
+  numPlayers (): number {
+    return this.players.length
+  }
+
   join (player: Player): boolean {
     if (!isUndefined(this.players.find(x => x.id === player.id))) {
       return false
